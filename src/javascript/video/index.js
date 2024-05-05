@@ -3,8 +3,11 @@ const Bindings = require('../bindings')
 const { EventsViaPoll } = require('../events/events-via-poll')
 const { Window } = require('./window')
 
-Globals.displays = Bindings.video_getDisplays()
-
+try {
+	Globals.displays = Bindings.video_getDisplays()
+} catch(err) {
+	Globals.displays = [];
+}
 
 const validEvents = [ 'displayAdd', 'displayRemove', 'displayOrient' ]
 
